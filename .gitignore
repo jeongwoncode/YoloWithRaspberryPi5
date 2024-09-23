@@ -1,0 +1,12 @@
+# .gitignore
+
+# PyTorch 라이브러리
+myenv/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so
+packages/torch/lib/libtorch_cpu.so
+
+# 가상 환경 디렉토리
+myenv/
+
+# 기타 무시할 파일이나 디렉토리 추가
+__pycache__/
+*.pyc
