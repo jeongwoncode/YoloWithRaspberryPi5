@@ -6,3 +6,4 @@ packages/torch/lib/libtorch_cpu.so
 
 # 가상 환경 디렉토리
 myenv/
+myenv/
