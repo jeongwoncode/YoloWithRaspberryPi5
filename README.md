@@ -1,12 +1,17 @@
 # YoloWithRaspberryPi5
 
-#git push
+## git push
 ```
 git add .
 
 git commit -m "commit message"
 
 git push origin main
+```
+
+## git pull
+```
+git pull
 ```
 
 
