@@ -11,8 +11,6 @@
 
 #include "detail/common.h"
 
-#include <cassert>
-
 #if defined(WITH_THREAD) && !defined(PYBIND11_SIMPLE_GIL_MANAGEMENT)
 #    include "detail/internals.h"
 #endif
@@ -139,9 +137,7 @@ private:
 
 class gil_scoped_release {
 public:
-    // PRECONDITION: The GIL must be held when this constructor is called.
     explicit gil_scoped_release(bool disassoc = false) : disassoc(disassoc) {
-        assert(PyGILState_Check());
         // `get_internals()` must be called here unconditionally in order to initialize
         // `internals.tstate` for subsequent `gil_scoped_acquire` calls. Otherwise, an
         // initialization race could occur as multiple threads try `gil_scoped_acquire`.
@@ -156,8 +152,8 @@ public:
         }
     }
 
-    gil_scoped_release(const gil_scoped_release &) = delete;
-    gil_scoped_release &operator=(const gil_scoped_release &) = delete;
+    gil_scoped_release(const gil_scoped_acquire &) = delete;
+    gil_scoped_release &operator=(const gil_scoped_acquire &) = delete;
 
     /// This method will disable the PyThreadState_DeleteCurrent call and the
     /// GIL won't be acquired. This method should be used if the interpreter
@@ -205,13 +201,9 @@ class gil_scoped_release {
     PyThreadState *state;
 
 public:
-    // PRECONDITION: The GIL must be held when this constructor is called.
-    gil_scoped_release() {
-        assert(PyGILState_Check());
-        state = PyEval_SaveThread();
-    }
+    gil_scoped_release() : state{PyEval_SaveThread()} {}
     gil_scoped_release(const gil_scoped_release &) = delete;
-    gil_scoped_release &operator=(const gil_scoped_release &) = delete;
+    gil_scoped_release &operator=(const gil_scoped_acquire &) = delete;
     ~gil_scoped_release() { PyEval_RestoreThread(state); }
     void disarm() {}
 };
@@ -238,7 +230,7 @@ public:
         (void) (this != (this + 1));
     }
     gil_scoped_release(const gil_scoped_release &) = delete;
-    gil_scoped_release &operator=(const gil_scoped_release &) = delete;
+    gil_scoped_release &operator=(const gil_scoped_acquire &) = delete;
     void disarm() {}
 };
 

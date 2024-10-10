@@ -1,6 +1,5 @@
 import os
-from pathlib import Path
-from typing import Callable, Optional, Union
+from typing import Callable, Optional
 
 from .folder import ImageFolder
 from .utils import download_and_extract_archive
@@ -10,8 +9,8 @@ class EuroSAT(ImageFolder):
     """RGB version of the `EuroSAT <https://github.com/phelber/eurosat>`_ Dataset.
 
     Args:
-        root (str or ``pathlib.Path``): Root directory of dataset where ``root/eurosat`` exists.
-        transform (callable, optional): A function/transform that takes in a PIL image
+        root (string): Root directory of dataset where ``root/eurosat`` exists.
+        transform (callable, optional): A function/transform that  takes in an PIL image
             and returns a transformed version. E.g, ``transforms.RandomCrop``
         target_transform (callable, optional): A function/transform that takes in the
             target and transforms it.
@@ -22,7 +21,7 @@ class EuroSAT(ImageFolder):
 
     def __init__(
         self,
-        root: Union[str, Path],
+        root: str,
         transform: Optional[Callable] = None,
         target_transform: Optional[Callable] = None,
         download: bool = False,

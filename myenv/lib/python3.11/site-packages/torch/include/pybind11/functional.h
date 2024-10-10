@@ -48,16 +48,9 @@ public:
          */
         if (auto cfunc = func.cpp_function()) {
             auto *cfunc_self = PyCFunction_GET_SELF(cfunc.ptr());
-            if (cfunc_self == nullptr) {
-                PyErr_Clear();
-            } else if (isinstance<capsule>(cfunc_self)) {
+            if (isinstance<capsule>(cfunc_self)) {
                 auto c = reinterpret_borrow<capsule>(cfunc_self);
-
-                function_record *rec = nullptr;
-                // Check that we can safely reinterpret the capsule into a function_record
-                if (detail::is_function_record_capsule(c)) {
-                    rec = c.get_pointer<function_record>();
-                }
+                auto *rec = (function_record *) c;
 
                 while (rec != nullptr) {
                     if (rec->is_stateless
@@ -128,8 +121,7 @@ public:
     }
 
     PYBIND11_TYPE_CASTER(type,
-                         const_name("Callable[[")
-                             + ::pybind11::detail::concat(make_caster<Args>::name...)
+                         const_name("Callable[[") + concat(make_caster<Args>::name...)
                              + const_name("], ") + make_caster<retval_type>::name
                              + const_name("]"));
 };
