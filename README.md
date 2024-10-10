@@ -1,9 +1,9 @@
 # YoloWithRaspberryPi5
 
-## modify path of .pt file
-yolo_motor_test5.py (line 90)
+## modify .pt file
+yolo_motor_test5.py (line 91)
 
-model_dir = Path('/home/casptone/Downloads/yolov5-master') # modify this
+weight_files = list(model_dir.glob('best*.pt')) # modify this
 
 ## git push
 ```
