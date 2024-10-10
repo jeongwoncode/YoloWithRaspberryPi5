@@ -1,0 +1,10 @@
+# .gitignore
+
+# PyTorch
+myenv/lib/python3.11/site-packages/torch/lib/libtorch_cpu.so
+packages/torch/lib/libtorch_cpu.so
+
+# 
+myenv/
+myenv/
+myenv/
