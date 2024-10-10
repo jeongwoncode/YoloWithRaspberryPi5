@@ -87,7 +87,7 @@ def rotate_motor2(dir_line, pul_line, pulses, delay=0.001):
 
 # Initialize YOLOv5 model
 def initialize_model():
-    model_dir = Path('/home/casptone/yolov5/models')
+    model_dir = Path('/home/casptone/Downloads/yolov5-master')
     weight_files = list(model_dir.glob('best*.pt'))
     
     if not weight_files:
