@@ -16,6 +16,8 @@ git push origin main
 
 ## git pull
 ```
+git branch --set-upstream-to=origin/main main
+
 git pull
 ```
 
