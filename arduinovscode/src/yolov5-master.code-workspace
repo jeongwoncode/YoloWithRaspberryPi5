@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "../../../Downloads/yolov5-master"
+		},
+		{
+			"name": "arduinovscode",
+			"path": ".."
+		}
+	],
+	"settings": {}
+}
