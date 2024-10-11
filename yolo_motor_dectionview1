@@ -109,13 +109,18 @@ def initialize_model():
 # Capture and detect objects
 def capture_and_detect(models, device, half, imgsz):
     cap = cv2.VideoCapture(0)
-    frame_interval = 1
+    frame_interval = 2  # 탐지 주기를 늘리기 위해 값을 증가시킴
     last_processed_time = time.time()
     previous_detections = set()
 
     while cap.isOpened():
         ret, frame = cap.read()
         if not ret:
+            break
+
+        # 화면 출력
+        cv2.imshow('YOLOv5 Detection', frame)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
         current_time = time.time()
