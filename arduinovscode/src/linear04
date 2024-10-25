@@ -1,0 +1,92 @@
+//2024-10-22 리니어 4개 동작
+
+int RPWM1 = 2;  //IBT-2 RPWM 핀에 아두이노 2번 연결
+int LPWM1 = 3;  //IBT-2 LPWM 핀에 아두이노 3번 연결
+int RPWM2 = 4;  //IBT-2 RPWM 핀에 아두이노 4번 연결
+int LPWM2 = 5;  //IBT-2 LPWM 핀에 아두이노 5번 연결
+int RPWM3 = 6;  //IBT-2 RPWM 핀에 아두이노 6번 연결
+int LPWM3 = 7;  //IBT-2 LPWM 핀에 아두이노 7번 연결
+int RPWM4 = 8;  //IBT-2 RPWM 핀에 아두이노 8번 연결
+int LPWM4 = 9;  //IBT-2 LPWM 핀에 아두이노 9번 연결
+int Speed = 10;
+
+void setup() {
+pinMode(2, OUTPUT); 
+pinMode(3, OUTPUT);
+pinMode(4, OUTPUT); 
+pinMode(5, OUTPUT);
+pinMode(6, OUTPUT); 
+pinMode(7, OUTPUT);
+pinMode(8, OUTPUT); 
+pinMode(9, OUTPUT);
+pinMode(10, OUTPUT);
+}
+
+void loop() {
+
+  if ("can"==HIGH){
+    digitalWrite(RPWM1, HIGH);
+    digitalWrite(LPWM1, LOW);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+
+
+    digitalWrite(RPWM1, LOW);
+    digitalWrite(LPWM1, HIGH);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+  }
+
+  if('pet'==HIGH) {
+
+    digitalWrite(RPWM2, HIGH);
+    digitalWrite(LPWM2, LOW);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+
+
+    digitalWrite(RPWM2, LOW);
+    digitalWrite(LPWM2, HIGH);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+    
+  }  
+
+  if('glass'==HIGH){
+
+    digitalWrite(RPWM3, HIGH);
+    digitalWrite(LPWM3, LOW);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+
+
+    digitalWrite(RPWM3, LOW);
+    digitalWrite(LPWM3, HIGH);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+  
+  }
+
+  if('paper'==HIGH){
+
+    digitalWrite(RPWM4, HIGH);
+    digitalWrite(LPWM4, LOW);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+
+
+    digitalWrite(RPWM4, LOW);
+    digitalWrite(LPWM4, HIGH);
+    analogWrite(Speed, 6000);
+    
+    delay(15000);//2초 간
+    
+  }
+}
