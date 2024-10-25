@@ -9,7 +9,7 @@ weight_files = list(model_dir.glob('best*.pt')) # modify this
 ```
 git add .
 
-git commit -m "commit message"
+git commit -m "commit message" // change message here
 
 git push origin main
 ```
