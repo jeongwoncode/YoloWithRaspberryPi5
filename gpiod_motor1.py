@@ -46,9 +46,9 @@ ena1_line.set_values({17: Value.INACTIVE})
 ena2_line.set_values({23: Value.INACTIVE})
 
 # Function to rotate motor1 forward
-def rotate_motor1_forward(dir_line, pul_line, pulses, delay=0.001):
+def rotate_motor1_forward(dir_line, pul_line, pulses, delay=0.0005):
     print(f"Rotating motor 1 forward for {pulses} pulses")
-    dir_line.set_values({dir_line.offsets[0]: Value.ACTIVE})
+    dir_line.set_values({dir_line.offsets[0]: Value.ACTIVE})  # Set direction to forward
     for _ in range(pulses):
         pul_line.set_values({pul_line.offsets[0]: Value.ACTIVE})
         time.sleep(delay)
@@ -56,28 +56,13 @@ def rotate_motor1_forward(dir_line, pul_line, pulses, delay=0.001):
         time.sleep(delay)
     print("Motor 1 forward rotation complete")
 
-# Function to rotate motor1 backward
-def rotate_motor1_backward(dir_line, pul_line, pulses, delay=0.001):
-    print(f"Rotating motor 1 backward for {pulses} pulses")
-    dir_line.set_values({dir_line.offsets[0]: Value.INACTIVE})
-    for _ in range(pulses):
-        pul_line.set_values({pul_line.offsets[0]: Value.ACTIVE})
-        time.sleep(delay)
-        pul_line.set_values({pul_line.offsets[0]: Value.INACTIVE})
-        time.sleep(delay)
-    print("Motor 1 backward rotation complete")
+
 
 # Execute motor rotation and measure execution time
-pulses = 1000  # Number of pulses for the motor to rotate
+pulses = 190  # Number of pulses for the motor to rotate
 
 # Measure and execute forward rotation
 start_time = time.time()
 rotate_motor1_forward(dir1_line, pul1_line, pulses)
 end_time = time.time()
 print(f"Motor 1 forward rotation time: {end_time - start_time:.4f} seconds")
-
-# Measure and execute backward rotation
-start_time = time.time()
-rotate_motor1_backward(dir1_line, pul1_line, pulses)
-end_time = time.time()
-print(f"Motor 1 backward rotation time: {end_time - start_time:.4f} seconds")
