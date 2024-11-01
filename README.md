@@ -20,3 +20,7 @@ git branch --set-upstream-to=origin/main main
 
 git pull
 ```
+
+## modify
+# export.py 삭제 고려
+# yolo 다른 모델 고려
